@@ -1,9 +1,12 @@
-datapath=/data4/MVTec_ad
-datasets=('screw' 'pill' 'capsule' 'carpet' 'grid' 'tile' 'wood' 'zipper' 'cable' 'toothbrush' 'transistor' 'metal_nut' 'bottle' 'hazelnut' 'leather')
+datapath=../patchcore-inspection/mvtec_anomaly_detection/
+datasets=('peanut' 'screw' 'pill' 'capsule' 'carpet' 'grid' 'tile' 'wood' 'zipper' 'cable' 'toothbrush' 'transistor' 'metal_nut' 'bottle' 'hazelnut' 'leather')
+# datasets=('screw' 'pill' 'capsule' 'carpet' 'grid' 'tile' 'wood' 'zipper' 'cable' 'toothbrush' 'transistor' 'metal_nut' 'bottle' 'hazelnut' 'leather')
 dataset_flags=($(for dataset in "${datasets[@]}"; do echo '-d '"${dataset}"; done))
 
+printf -v dataset_flags_str " %s" "${dataset_flags[@]}"
+
 python3 main.py \
---gpu 4 \
+--gpu 1 \
 --seed 0 \
 --log_group simplenet_mvtec \
 --log_project MVTecAD_Results \

@@ -178,9 +178,10 @@ class MVTecDataset(torch.utils.data.Dataset):
                 for i, image_path in enumerate(imgpaths_per_class[classname][anomaly]):
                     data_tuple = [classname, anomaly, image_path]
                     if self.split == DatasetSplit.TEST and anomaly != "good":
-                        data_tuple.append(maskpaths_per_class[classname][anomaly][i])
-                    else:
-                        data_tuple.append(None)
+                        try:
+                            data_tuple.append(maskpaths_per_class[classname][anomaly][i])
+                        except IndexError:
+                            data_tuple.append(None)
                     data_to_iterate.append(data_tuple)
 
         return imgpaths_per_class, data_to_iterate
