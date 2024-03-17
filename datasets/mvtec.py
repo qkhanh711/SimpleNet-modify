@@ -182,6 +182,8 @@ class MVTecDataset(torch.utils.data.Dataset):
                             data_tuple.append(maskpaths_per_class[classname][anomaly][i])
                         except IndexError:
                             data_tuple.append(None)
+                    else:
+                        data_tuple.append(None)
                     data_to_iterate.append(data_tuple)
 
         return imgpaths_per_class, data_to_iterate
