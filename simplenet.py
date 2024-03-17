@@ -133,7 +133,9 @@ class SimpleNet(torch.nn.Module):
     ):
         pid = os.getpid()
         def show_mem():
+            import psutil
             return(psutil.Process(pid).memory_info())
+        print(show_mem())
 
         self.backbone = backbone.to(device)
         self.layers_to_extract_from = layers_to_extract_from
