@@ -35,7 +35,7 @@ _DATASETS = {
 @click.option("--log_project", type=str, default="project")
 @click.option("--run_name", type=str, default="test")
 @click.option("--test", is_flag=True)
-@click.option("--save_segmentation_images", is_flag=True, default=False, show_default=True)
+@click.option("--save_segmentation_images", is_flag=True, default=True, show_default=True)
 def main(**kwargs):
     pass
 
@@ -96,7 +96,7 @@ def run(
                 i_auroc, p_auroc, pro_auroc = SimpleNet.train(dataloaders["training"], dataloaders["testing"])
             else:
                 # BUG: the following line is not using. Set test with True by default.
-                # i_auroc, p_auroc, pro_auroc =  SimpleNet.test(dataloaders["training"], dataloaders["testing"], save_segmentation_images)
+                i_auroc, p_auroc, pro_auroc =  SimpleNet.test(dataloaders["training"], dataloaders["testing"], save_segmentation_images)
                 print("Warning: Pls set test with true by default")
 
             result_collect.append(

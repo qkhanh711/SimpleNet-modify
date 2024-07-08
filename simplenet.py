@@ -423,7 +423,7 @@ class SimpleNet(torch.nn.Module):
 
             self._train_discriminator(training_data)
 
-            # torch.cuda.empty_cache()
+            torch.cuda.empty_cache()
             scores, segmentations, features, labels_gt, masks_gt = self.predict(test_data)
             auroc, full_pixel_auroc, pro = self._evaluate(test_data, scores, segmentations, features, labels_gt, masks_gt)
             self.logger.logger.add_scalar("i-auroc", auroc, i_mepoch)
